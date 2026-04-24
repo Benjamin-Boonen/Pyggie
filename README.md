@@ -8,8 +8,8 @@ I would like to have easy-access to a tailored graphical calculator that doesn't
 (try) to build it myself using -insert graphics lib-, numpy and sympy. (basically I'm making a sympy-numpy-wrapper shhhh)
 
 ## To-Do:
-[] decide graphics library
-[] make cli version
-[] figure out how to draw graphs in the aforementioned graphics lib
-[] make GUI
-[] fix hordes of bugs
+[] decide graphics library <br>
+[] make cli version <br>
+[] figure out how to draw graphs in the aforementioned graphics lib <br>
+[] make GUI <br>
+[] fix hordes of bugs :)
