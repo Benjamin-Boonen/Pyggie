@@ -1,15 +1,14 @@
-# Pyggie
-**THIS PROJECT IS LARGELY IN IT'S INFANT STAGES**
+<small>Complete Revamp</small>
+# PYGGIE - A self-hosted AI Web GUI (future CLI?)
 
-## The Problem:
-I would like to have easy-access to a tailored graphical calculator that doesn't act like a b#tch when I need a derivative or an integral or a quick graph (thank you)
+The idea is simple: A django hosted web-app that can connect to your OLLAMA-server
+and host a simple AI Web UI, cause subscription models are 'spencive and 
+being self-sufficient is cool.
 
-## The Solution:
-(try) to build it myself using -insert graphics lib-, numpy and sympy. (basically I'm making a sympy-numpy-wrapper shhhh)
+## STEPS
+[ ] Get the django app up
+[ ] Figure out how to connect to OLLAMA-server
+[ ] Make the web-UI
+[ ] Create account system
 
-## To-Do:
-[ ] decide graphics library <br>
-[ ] make cli version <br>
-[ ] figure out how to draw graphs in the aforementioned graphics lib <br>
-[ ] make GUI <br>
-[ ] fix hordes of bugs :)
+
