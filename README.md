@@ -6,7 +6,7 @@ and host a simple AI Web UI, cause subscription models are 'spencive and
 being self-sufficient is cool.
 
 ## STEPS
-[ ] Get the django app up <br>
+[] Get the django app up <br>
 [ ] Figure out how to connect to OLLAMA-server <br>
 [ ] Make the web-UI <br>
 [ ] Create account system <br>
