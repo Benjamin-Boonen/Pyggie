@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Log in · Clankr</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:ital,wght@0,300;0,400;0,500;1,300&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:        #0d0f0e;
+      --surface:   #141714;
+      --surface2:  #1a1d1a;
+      --border:    rgba(255,255,255,0.07);
+      --border2:   rgba(255,255,255,0.13);
+      --text:      #e8ebe5;
+      --muted:     #7a8577;
+      --accent:    #a3c98a;
+      --accent2:   #6fa84e;
+      --user-bg:   #1e2b1a;
+      --user-brd:  rgba(163,201,138,0.2);
+      --error:     #d98a7a;
+      --radius:    12px;
+      --font-body: 'DM Sans', sans-serif;
+      --font-mono: 'DM Mono', monospace;
+    }
+
+    html, body {
+      height: 100%;
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--font-body);
+      font-size: 15px;
+      line-height: 1.6;
+    }
+
+    body {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+    }
+
+    .card {
+      width: 100%;
+      max-width: 360px;
+      animation: fadeUp 0.3s ease both;
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(8px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .logo {
+      font-family: var(--font-mono);
+      font-size: 22px;
+      font-weight: 500;
+      letter-spacing: -0.03em;
+      color: var(--accent);
+      text-align: center;
+    }
+
+    .logo span { color: var(--muted); font-weight: 300; }
+
+    .tagline {
+      text-align: center;
+      font-size: 14px;
+      color: var(--muted);
+      margin: 6px 0 28px;
+    }
+
+    form {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 24px;
+    }
+
+    .field { margin-bottom: 16px; }
+
+    label {
+      display: block;
+      margin-bottom: 6px;
+      font-family: var(--font-mono);
+      font-size: 10px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    input[type="text"],
+    input[type="password"] {
+      width: 100%;
+      padding: 10px 12px;
+      background: var(--bg);
+      border: 1px solid var(--border2);
+      border-radius: 8px;
+      color: var(--text);
+      font-family: var(--font-body);
+      font-size: 14.5px;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+
+    input[type="text"]:focus,
+    input[type="password"]:focus { border-color: rgba(163,201,138,0.4); }
+
+    .error {
+      margin-bottom: 16px;
+      padding: 9px 12px;
+      border-radius: 8px;
+      border: 1px solid rgba(217,138,122,0.3);
+      background: rgba(217,138,122,0.07);
+      color: var(--error);
+      font-size: 13px;
+    }
+
+    button {
+      width: 100%;
+      padding: 10px;
+      border: none;
+      border-radius: 8px;
+      background: var(--accent2);
+      color: #0d0f0e;
+      font-family: var(--font-body);
+      font-size: 14px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: background 0.15s, transform 0.1s;
+    }
+
+    button:hover { background: var(--accent); }
+    button:active { transform: scale(0.98); }
+
+    .hint {
+      margin-top: 16px;
+      text-align: center;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--muted);
+      opacity: 0.7;
+    }
+  </style>
+</head>
+<body>
+
+<div class="card">
+  <div class="logo">clankr<span>.ai</span></div>
+  <div class="tagline">Sign in to continue.</div>
+
+  <form method="post">
+    {% csrf_token %}
+    <input type="hidden" name="next" value="{{ next }}">
+
+    {% if form.errors %}
+      <div class="error">Wrong username or password.</div>
+    {% endif %}
+
+    <div class="field">
+      <label for="id_username">Username</label>
+      <input type="text" name="username" id="id_username"
+             value="{{ form.username.value|default:'' }}"
+             autocomplete="username" autofocus required>
+    </div>
+
+    <div class="field">
+      <label for="id_password">Password</label>
+      <input type="password" name="password" id="id_password"
+             autocomplete="current-password" required>
+    </div>
+
+    <button type="submit">Log in</button>
+  </form>
+
+  <div class="hint">self-hosted · private</div>
+</div>
+
+</body>
+</html>

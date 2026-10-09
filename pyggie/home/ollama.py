@@ -8,11 +8,18 @@ def get_models():
     resp.raise_for_status()
     return [m['name'] for m in resp.json()['models']]
 
+SYSTEM_PROMPT = (
+    "Format replies in Markdown. Write all mathematics in LaTeX: "
+    "inline math between single dollar signs ($x^2$), "
+    "displayed equations between double dollar signs ($$ ... $$). "
+    "Never write math as plain text or ASCII art."
+)
+
 def chat_stream(model, messages):
     """Generator that yields text chunks as Ollama produces them."""
     resp = requests.post(f"{OLLAMA_BASE}/api/chat", json={
         "model": model,
-        "messages": messages,
+        "messages": [{"role": "system", "content": SYSTEM_PROMPT}] + messages,
         "stream": True
     }, stream=True)
     resp.raise_for_status()

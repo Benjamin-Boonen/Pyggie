@@ -1,7 +1,7 @@
 # home/views.py
 import json
 from django.contrib.auth.decorators import login_required
-from django.http import JsonResponse
+from django.http import JsonResponse, StreamingHttpResponse
 from django.views.decorators.http import require_POST
 from django.shortcuts import render, get_object_or_404
 from .models import Chat, Message
