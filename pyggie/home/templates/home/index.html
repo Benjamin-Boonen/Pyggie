@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Clankr</title>
+  <title>Clank.r</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=DM+Mono:ital,wght@0,300;0,400;0,500;1,300&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16/dist/katex.min.css">
@@ -13,7 +13,7 @@
   <script>
     // apply the saved colour before first paint, so there's no flash of the default
     try {
-      const h = localStorage.getItem('clankr.hue');
+      const h = localStorage.getItem('Clank.r.hue');
       if (h !== null) document.documentElement.style.setProperty('--hue', h);
     } catch (e) {}
   </script>
@@ -21,13 +21,13 @@
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --bg:        #0d0f0e;
-      --surface:   #141714;
-      --surface2:  #1a1d1a;
-      --border:    rgba(255,255,255,0.07);
-      --border2:   rgba(255,255,255,0.13);
-      --text:      #e8ebe5;
-      --muted:     #7a8577;
+      --bg:        hsl(var(--hue) 14% 5.5%);
+      --surface:   hsl(var(--hue) 14% 8.5%);
+      --surface2:  hsl(var(--hue) 13% 11.5%);
+      --border:    hsl(var(--hue) 30% 90% / 0.08);
+      --border2:   hsl(var(--hue) 30% 90% / 0.15);
+      --text:      hsl(var(--hue) 15% 91%);
+      --muted:     hsl(var(--hue) 10% 52%);
       /* theme: everything coloured is derived from one hue (0-360) */
       --hue:       100;
       --accent:    hsl(var(--hue) 37% 66%);
@@ -35,11 +35,11 @@
       --accent-a08: hsl(var(--hue) 37% 66% / 0.08);
       --accent-a15: hsl(var(--hue) 37% 66% / 0.15);
       --accent-a40: hsl(var(--hue) 37% 66% / 0.4);
-      --user-bg:   hsl(var(--hue) 25% 13.5%);
+      --user-bg:   hsl(var(--hue) 28% 13.5%);
       --user-brd:  hsl(var(--hue) 37% 66% / 0.2);
-      --usermsg-bg:  hsl(var(--hue) 35% 16%);
+      --usermsg-bg:  hsl(var(--hue) 38% 16%);
       --usermsg-brd: hsl(var(--hue) 37% 66% / 0.32);
-      --ai-bg:     #151815;
+      --ai-bg:     hsl(var(--hue) 14% 8.8%);
       --radius:    12px;
       --font-body: 'DM Sans', sans-serif;
       --font-mono: 'DM Mono', monospace;
@@ -464,7 +464,7 @@
       border-radius: 8px;
       border: none;
       background: var(--accent2);
-      color: #0d0f0e;
+      color: var(--bg);
       display: flex;
       align-items: center;
       justify-content: center;
@@ -635,7 +635,7 @@
   <!-- sidebar -->
   <aside class="sidebar">
     <div class="sidebar-header">
-      <div class="logo">clankr<span>.ai</span></div>
+      <div class="logo">Clank<span>.r</span></div>
     </div>
 
     <button class="new-chat-btn" onclick="newChat()">
@@ -696,7 +696,7 @@
     <!-- messages -->
     <div class="messages" id="messages">
       <div class="empty-state" id="emptyState">
-        <div class="empty-glyph">&gt;_</div>
+        <div class="empty-glyph">CLANK.R</div>
         <div class="empty-title">What can I help with?</div>
         <div class="empty-sub">Ask anything. I'll be direct.</div>
         <div class="suggestions">
@@ -721,7 +721,7 @@
       <div class="input-box">
         <textarea
           id="msgInput"
-          placeholder="Message clankr…"
+          placeholder="Message Clank.r…"
           rows="1"
           onkeydown="handleKey(event)"
           oninput="autoResize(this)"
@@ -752,7 +752,7 @@
     <div class="modal-section">
       <label class="modal-label" for="defaultModel">Default model</label>
       <select id="defaultModel"></select>
-      <div class="modal-note">Used when you open Clankr. Saved in this browser.</div>
+      <div class="modal-note">Used when you open Clank.r. Saved in this browser.</div>
     </div>
 
     <div class="modal-section">
@@ -793,14 +793,14 @@
   // ─── default model (remembered in this browser) ───
   defaultSel.innerHTML = modelSel.innerHTML;
   try {
-    const saved = localStorage.getItem('clankr.defaultModel');
+    const saved = localStorage.getItem('Clank.r.defaultModel');
     if (saved && [...modelSel.options].some(o => o.value === saved)) {
       modelSel.value = saved;
       defaultSel.value = saved;
     }
   } catch (e) {}
   defaultSel.addEventListener('change', () => {
-    try { localStorage.setItem('clankr.defaultModel', defaultSel.value); } catch (e) {}
+    try { localStorage.setItem('Clank.r.defaultModel', defaultSel.value); } catch (e) {}
     modelSel.value = defaultSel.value;
   });
 
@@ -812,14 +812,14 @@
     document.documentElement.style.setProperty('--hue', h);
     hueSlider.value = h;
     swatches.forEach(s => s.classList.toggle('active', s.dataset.hue === String(h)));
-    if (save) { try { localStorage.setItem('clankr.hue', h); } catch (e) {} }
+    if (save) { try { localStorage.setItem('Clank.r.hue', h); } catch (e) {} }
   }
 
   hueSlider.addEventListener('input', () => setHue(hueSlider.value, true));
   swatches.forEach(s => s.addEventListener('click', () => setHue(s.dataset.hue, true)));
 
   try {
-    setHue(localStorage.getItem('clankr.hue') ?? 100, false);
+    setHue(localStorage.getItem('Clank.r.hue') ?? 100, false);
   } catch (e) { setHue(100, false); }
 
   // ─── settings panel ───
